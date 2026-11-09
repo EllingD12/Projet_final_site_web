@@ -1,0 +1,133 @@
+:root {
+  --couleur-fond: #F1EFE9;
+  --couleur-texte: #3b2f2f;
+  --couleur-accent: #F1EFE9;
+  --couleur-accent-clair: #d9872a;
+  --couleur-hover: #DCD7C9; /* beige plus foncé que le fond, utilisé au survol */
+  --police: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- Accessibilité : texte lu uniquement par les lecteurs d'écran ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--couleur-fond);
+  border-bottom: 3px solid var(--couleur-accent);
+  font-family: var(--police);
+}
+
+/* Logo */
+.site-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--couleur-texte);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header__logo img {
+  display: block;
+  height: 56px;
+  width: auto;
+}
+
+/* Navigation (desktop) */
+.site-header__nav ul {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header__nav a {
+  display: block;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--couleur-texte);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-header__nav a:hover,
+.site-header__nav a[aria-current="page"] {
+  background: var(--couleur-hover);
+  color: var(--couleur-texte);
+}
+
+.site-header__nav a:focus-visible,
+.site-header__burger:focus-visible,
+.site-header__toggle:focus-visible + .site-header__burger {
+  outline: 5px solid var(--couleur-accent-clair);
+  outline-offset: 2px;
+}
+
+.site-header__titre {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: calc(56px + 1rem); /* même hauteur que la ligne logo + menu */
+  margin: 0;
+  font-size: 1.75rem;
+  white-space: nowrap;
+  pointer-events: none; /* le titre ne bloque pas les clics sur le logo et le menu */
+}
+
+/* Burger : caché sur desktop */
+.site-header__toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-header__burger {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: var(--couleur-accent-clair);
+  color: var(--couleur-texte);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.site-header__burger::before {
+  content: "\2630"; /* ☰ */
+}
+
+.site-header__toggle:checked + .site-header__burger::before {
+  content: "\2715"; /* ✕ */
+}
+
+.h1 {
+    text-align: center;
+}
+
+
+ 
