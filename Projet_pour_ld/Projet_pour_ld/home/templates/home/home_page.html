@@ -1,14 +1,56 @@
+
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
-{% block extra_css %}
-
-{% endblock extra_css %}
-
 {% block content %}
+  {% for bloc in page.body %}
 
+    {% if bloc.block_type == "titre" %}
+      {% if forloop.first %}
+        <div class="section section--claire"><div class="section__inner">
+      {% else %}
+        </div></div>
+        <div class="section section--{% cycle 'orange' 'claire' %}"><div class="section__inner">
+      {% endif %}
+    {% elif forloop.first %}
+      <div class="section section--claire"><div class="section__inner">
+    {% endif %}
 
+    <section class="bloc bloc--{{ bloc.block_type }}">
 
+      {% if bloc.block_type == "titre" %}
+        <h2>{{ bloc.value }}</h2>
+
+      {% elif bloc.block_type == "texte" %}
+        {{ bloc.value|richtext }}
+
+      {% elif bloc.block_type == "image" %}
+        {% image bloc.value width-1000 as img %}
+        <img src="{{ img.url }}" width="{{ img.width }}" height="{{ img.height }}" alt="{{ bloc.value.title }}">
+
+      {% elif bloc.block_type == "galerie" %}
+        <div class="galerie">
+          {% for photo in bloc.value %}
+            {% image photo width-500 as img %}
+            <img src="{{ img.url }}" width="{{ img.width }}" height="{{ img.height }}" alt="{{ photo.title }}">
+          {% endfor %}
+        </div>
+
+      {% elif bloc.block_type == "bouton" %}
+        <a class="bouton"
+           {% if bloc.value.page %}href="{% pageurl bloc.value.page %}"
+           {% else %}href="{{ bloc.value.url_externe }}" target="_blank" rel="noopener"{% endif %}>
+          {{ bloc.value.titre }}
+        </a>
+      {% endif %}
+
+    </section>
+
+  {% endfor %}
+
+  {% if page.body %}
+    </div></div>
+  {% endif %}
 {% endblock content %}

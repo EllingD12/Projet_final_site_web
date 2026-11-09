@@ -63,49 +63,70 @@
                 </ul>
   
         </nav>
-    </header>
-{% endif %}
-        {% block content %}
+        </header>
+            {% endif %}
+            {% block content %}{% endblock %}
             {% if footer %}
-            <footer class="site-footer">
-            {% if footer.texte %}
-                    <div class="site-footer__texte">{{ footer.texte|richtext }}</div>
-            {% endif %}
+<footer class="site-footer">
+  <div class="site-footer__haut">
 
-            {% if footer.reseaux.all %}
-                <ul class="site-footer__reseaux">
-            {% for r in footer.reseaux.all %}
-                <li>
-                    <a href="{{ r.url }}" target="_blank" rel="noopener">
-            {% if r.icone %}
-            {% image r.icone height-32 as ico %}
+    <div class="site-footer__infos">
+      {% if footer.texte %}
+        <div class="site-footer__texte">{{ footer.texte|richtext }}</div>
+      {% endif %}
+
+      {% if footer.email_contact %}
+        <p><a href="mailto:{{ footer.email_contact }}">{{ footer.email_contact }}</a></p>
+      {% endif %}
+
+      {% if footer.adresse %}
+        <address>{{ footer.adresse|linebreaksbr }}</address>
+      {% endif %}
+
+      {% if footer.reseaux.all %}
+      <ul class="site-footer__reseaux">
+        {% for r in footer.reseaux.all %}
+          <li>
+            <a href="{{ r.url }}" target="_blank" rel="noopener">
+              {% if r.icone %}
+                {% image r.icone height-32 as ico %}
                 <img src="{{ ico.url }}" width="{{ ico.width }}" height="{{ ico.height }}" alt="">
-            {% endif %}
-            {{ r.nom }}
-                </a>
-                    </li>
-            {% endfor %}
-                </ul>
-            {% endif %}
+              {% endif %}
+              <span>{{ r.nom }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
 
-            <p class="site-footer__bas">
-            {{ footer.copyright }}
-            {% if footer.email_contact %}
-      ·         <a href="mailto:{{ footer.email_contact }}">{{ footer.email_contact }}</a>
-            {% endif %}
-            {% if footer.page_mentions_legales %}
-      ·         <a href="{{ footer.page_mentions_legales.url }}">Mentions légales</a>
-            {% endif %}
-            </p>
-            </footer>
-            {% endif %}
-        {% endblock %}
+    {% if footer.titre %}
+      <p class="site-footer__titre">{{ footer.titre }}</p>
+    {% endif %}
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/Projet_pour_ld.js' %}"></script>
+    <div class="site-footer__logo">
+      {% if footer.logo %}
+        {% image footer.logo height-120 as flogo %}
+        <img src="{{ flogo.url }}" width="{{ flogo.width }}" height="{{ flogo.height }}" alt="Logo">
+      {% endif %}
+    </div>
 
-        {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        {% endblock %}
+  </div>
+
+  <p class="site-footer__bas">
+    {{ footer.copyright }}
+    {% if footer.page_mentions_legales %}
+      · <a href="{{ footer.page_mentions_legales.url }}">Mentions légales</a>
+    {% endif %}
+  </p>
+</footer>
+{% endif %}
+
+{# Global javascript #}
+<script type="text/javascript" src="{% static 'js/Projet_pour_ld.js' %}"></script>
+
+{% block extra_js %}
+{# Override this in templates to add extra javascript #}
+{% endblock %}
     </body>
 </html>

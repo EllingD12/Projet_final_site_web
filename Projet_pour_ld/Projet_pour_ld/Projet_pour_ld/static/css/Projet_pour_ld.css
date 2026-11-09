@@ -129,5 +129,208 @@
     text-align: center;
 }
 
+.site-footer {
+  background: #000;
+  color: #fff;
+  padding: 2rem 1.25rem 1rem;
+  font-family: var(--police);
+}
 
- 
+.site-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  text-decoration: underline;
+}
+
+/* 3 colonnes : infos à gauche, titre au centre, logo à droite */
+.site-footer__haut {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-footer__infos {
+  text-align: left;
+}
+
+.site-footer__infos p,
+.site-footer__texte p {
+  margin: 0 0 0.5rem;
+}
+
+.site-footer address {
+  margin: 0 0 1rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.site-footer__titre {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.site-footer__logo {
+  justify-self: end;
+}
+
+.site-footer__logo img {
+  display: block;
+  max-height: 120px;
+  width: auto;
+}
+
+/* Réseaux sociaux */
+.site-footer__reseaux {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__reseaux a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-footer__reseaux img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+/* Barre du bas */
+.site-footer__bas {
+  margin: 2rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #333;
+  font-size: 0.875rem;
+  text-align: center;
+}
+body {
+  margin: 0;
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
+  font-family: var(--police);
+}
+
+/* ---------- Sections (une par titre) ---------- */
+.section {
+  padding: 2.5rem 1.25rem;
+}
+
+.section--claire {
+  background: var(--couleur-fond);
+}
+
+.section--orange {
+  background: var(--couleur-rouge-orange);
+  color: #fff; /* le texte brun serait peu lisible sur ce rouge */
+}
+
+.section--orange a:not(.bouton) {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.section__inner {
+  display: flow-root; /* contient l'image flottante à droite */
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section__inner > .bloc:last-child {
+  margin-bottom: 0;
+}
+
+.bloc {
+  margin-bottom: 2rem; /* espace entre chaque contenu */
+}
+
+/* Titre : très gros, et il démarre une nouvelle section sous l'image */
+.bloc--titre {
+  clear: both;
+}
+
+.bloc--titre h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1.1;
+  text-align: left;
+}
+
+/* Texte : petit */
+.bloc--texte {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.bloc--texte p {
+  margin: 0 0 0.75rem;
+}
+
+/* Image : à droite, délimitée par un cadre, taille limitée */
+.bloc--image {
+  float: right;
+  width: 40%;
+  max-width: 320px;
+  margin: 0 0 1rem 2rem; /* l'espace est à gauche, là où se trouve le texte */
+}
+
+.bloc--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 3px solid #000;
+  border-radius: 12px;
+}
+
+/* Galerie */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  clear: both;
+}
+
+.galerie img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 3px solid #000;
+  border-radius: 12px;
+}
+
+/* Boutons / liens vers les projets : petits et noirs */
+.bloc--bouton {
+  text-align: left;
+}
+
+.bouton {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.bouton:hover,
+.bouton:focus-visible {
+  background: #444;
+}
+:root {
+  --couleur-rouge-orange: #D9442B;
+}
